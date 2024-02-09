@@ -1,0 +1,85 @@
+:root {
+    --back-color: #38024d;
+    --text-color: #fff4f4;
+    --text-btn-color: #ffffff
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: var(--back-color); /* Замените на нужный вам цвет фона */
+    display: flex;
+    justify-content: center;
+}
+
+
+label, p {
+    font-family: "Arial";
+    font-size: 5vw;
+    color: var(--text-color);
+}
+
+@media (min-width: 500px) {
+    label, p {
+        font-size: 3vw;
+    }
+}
+
+.input-field {
+    width: 100%;
+    height: 4vh;
+    color: var(--text-color);
+    font-family: Arial;
+    font-size: 2vh;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #ccc;
+    box-sizing: border-box;
+}
+
+.jsonbutton {
+    font-family: Arial;
+    font-size: 1vw;
+    background-color: #16b9a5;
+    color: var(--text-btn-color);
+    padding: 10px 20px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.jsonbutton:hover {
+    background-color: #1d9382;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.element {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+table {
+    margin: 6vh;
+    border-collapse: collapse; /* Убираем двойные линии между ячейками */
+}
+td, th {
+    padding: 3px; /* Поля вокруг содержимого таблицы */
+    border: 1px solid #0080b4; /* Параметры рамки */
+}
+th {
+    background: #9fdbe7; /* Цвет фона */
+}

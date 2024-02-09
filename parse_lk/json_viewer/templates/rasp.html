@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <title>Календарь</title>
+</head>
+<body>
+    <table id="lessonTable">
+        <tr>
+            <th onclick="sortTable(0)">Название</th>
+            <th onclick="sortTable(1)">Дата</th>
+            <th onclick="sortTable(2)">Время</th>
+            <th onclick="sortTable(3)">Преподаватель</th>
+            <th onclick="sortTable(4)">Тип предмета</th>
+        </tr>
+        {% for lesson in lessons %}
+        <tr>
+            <td>{{ lesson['Название'] }}</td>
+            <td>{{ lesson['День'] }}/{{ lesson['Месяц'] }}/{{ lesson['Год'] }}</td>
+            <td>{{ lesson['Начало'] }} - {{ lesson['Конец'] }}</td>
+            <td>{{ lesson['Преподаватель'] }}</td>
+            <td>{{ lesson['Тип предмета'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
