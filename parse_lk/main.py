@@ -1,20 +1,22 @@
-import requests
-import pandas as pd
-import json
-from openpyxl import load_workbook
 import argparse
-from bs4 import BeautifulSoup
 import os
+
+import pandas as pd
+import requests
+from bs4 import BeautifulSoup
+from openpyxl import load_workbook
+
+import json
 
 try:
     from config import config
 except ImportError:
     from config_default import config
 
-
 url_json = 'https://lk.samgtu.ru/api/common/distancelearning'
 url_login = 'https://lk.samgtu.ru/site/login'
 url_for_num = 'https://lk.samgtu.ru/distancelearning/distancelearning/index'
+
 
 def fix_headers(filename, sheetname):
     wb = load_workbook(filename)
@@ -65,13 +67,14 @@ def parse(params, headers):
                          'Преподаватель': teacher,
                          'Тип предмета': urok_type})
 
-
+    if not os.path.isdir('json'): os.mkdir('json')
+    if not os.path.isdir('xlsx'): os.mkdir('xlsx')
 
     # json
     with open(f"json/data_{info}.json", "w", encoding='utf-8') as json_file:
         json.dump(new_data, json_file)
 
-    file_xlsx = f'xslx/расписание_{info}.xlsx'
+    file_xlsx = f'xlsx/расписание_{info}.xlsx'
     df = pd.DataFrame(new_data)
     df.to_excel(file_xlsx, index=False)
 
@@ -82,7 +85,6 @@ def parse(params, headers):
 
 
 def main():
-
     params = config['params']
     headers = config['headers']
 
@@ -120,8 +122,8 @@ def main():
 
     parse_result = parse(params, headers)
     if parse_result:
-        print(parse_result)
         print(headers)
+
 
 if __name__ == '__main__':
     main()
