@@ -4,9 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='for_viewer.css')}}">
     <title>Календарь</title>
 </head>
 <body>
+    <header>
+         <a href="/"><p class="header">Generate</p></a>
+         <a href="/viewer"><p class="header">Viewer</p></a>
+    </header>
     <table id="lessonTable">
         <tr>
             <th onclick="sortTable(0)">Название</th>

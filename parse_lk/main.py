@@ -108,8 +108,7 @@ def main():
 
     if args.auth:
         resp1 = requests.get(url_login)
-        id = resp1.headers['Set-Cookie'].split(' ')[0]
-        headers['Cookie'] = id
+        headers['Cookie'] = resp1.headers['Set-Cookie'].split(' ')[0]
         login = args.auth.split(':')[0]
         passwd = args.auth.split(':')[1]
         data = {
@@ -122,7 +121,7 @@ def main():
 
     parse_result = parse(params, headers)
     if parse_result:
-        print(headers)
+        print(parse_result)
 
 
 if __name__ == '__main__':

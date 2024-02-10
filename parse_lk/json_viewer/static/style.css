@@ -1,7 +1,8 @@
 :root {
     --back-color: #38024d;
+    --back-header-color: #5a057e;
     --text-color: #fff4f4;
-    --text-btn-color: #ffffff
+    --text-btn-color: #ffffff;
 }
 
 html, body {
@@ -9,40 +10,68 @@ html, body {
     padding: 0;
 }
 body {
-    background-color: var(--back-color); /* Замените на нужный вам цвет фона */
-    display: flex;
+    background-color: var(--back-color);
     justify-content: center;
 }
 
-
-label, p {
-    font-family: "Arial";
-    font-size: 5vw;
-    color: var(--text-color);
+header {
+    display: flex;
+    background-color: var(--back-header-color);
+    border-bottom: 1px solid;
+    border-color: black;
+    text-align: center;
 }
 
-@media (min-width: 500px) {
-    label, p {
-        font-size: 3vw;
-    }
+.header {
+    font-family: Roboto;
+    font-size: 18px;
+}
+
+header a {
+    padding: 13px 7px 13px 7px;
+    font-family: Roboto;
+    background-color: var(--back-header-color);
+    text-align: center;
+    width: 100px;
+    color: inherit;
+    text-decoration: none;
+    border-right: 1px solid;
+    border-color: black;
+}
+
+a:hover {
+    background-color: #410359;
+    color: #410359;
+}
+
+label, p {
+    font-family: Roboto;
+    font-size: 32px;
+    color: var(--text-color);
+    text-align: center;
+}
+
+a p {
+    margin: 0;
 }
 
 .input-field {
     width: 100%;
-    height: 4vh;
-    color: var(--text-color);
+    height: 20px;
+    color: black;
     font-family: Arial;
-    font-size: 2vh;
+    font-size: 15px;
     padding: 10px;
+    padding-left: 5px;
     border-radius: 5px;
     border: 2px solid #ccc;
     box-sizing: border-box;
 }
 
-.jsonbutton {
+.button {
     font-family: Arial;
-    font-size: 1vw;
-    background-color: #16b9a5;
+    font-size: 17px;
+    background-color: #13a190;
     color: var(--text-btn-color);
     padding: 10px 20px;
     margin-top: 10px;
@@ -51,8 +80,27 @@ label, p {
     cursor: pointer;
 }
 
-.jsonbutton:hover {
-    background-color: #1d9382;
+.button:hover {
+    background-color: #177769;
+}
+
+#btn2 {
+    margin-top: 53.5px;
+}
+
+#main_div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-left: 50px;
+    margin-right: 50px;
+    height: 50%;
+}
+
+.boxes {
+    margin: 40px;
+    margin-top: 30px;
+    height: 100%;
 }
 
 .container {
@@ -72,14 +120,6 @@ ul {
     margin: 0;
 }
 
-table {
-    margin: 6vh;
-    border-collapse: collapse; /* Убираем двойные линии между ячейками */
-}
-td, th {
-    padding: 3px; /* Поля вокруг содержимого таблицы */
-    border: 1px solid #0080b4; /* Параметры рамки */
-}
-th {
-    background: #9fdbe7; /* Цвет фона */
-}
+
+
+

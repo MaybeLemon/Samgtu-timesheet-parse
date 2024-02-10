@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <style>
+        body {
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/"><p class="header">Generate</p></a>
+        <a href="/viewer"><p class="header">Viewer</p></a>
+    </header>
+    <div id="main_div">
+        <form action="/" method="post">
+            <div class="signin boxes">
+                <div class="container">
+                    <div class="element">
+                        <p>Авторизация через<br>логин и пароль</p>
+                    </div>
+                    <div class="element">
+                        <input id='login' name="login" class="input-field" placeholder="Логин">
+                    </div>
+                    <div class="element">
+                        <input id='passwd' name="passwd" type="password" class="input-field" placeholder="Пароль">
+                    </div>
+                    <div class="element">
+                        <button type="submit" id='btn1' name="btn1" class="button">Авторизоваться</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <form action="/" method="post">
+            <div class="cookies boxes">
+                <div class="container">
+                    <div class="element">
+                        <p>Авторизация через<br>PHPSESSID</p>
+                    </div>
+                    <div class="element">
+                        <input id="sessid" name="sessid" class="input-field" placeholder="PHPSESSID">
+                    </div>
+                    <div class="element">
+                        <button type="submit" name="btn2" id="btn2" class="button">Авторизоваться</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <p>{{ otvet }}</p>
+</body>
+</html>
