@@ -12,8 +12,10 @@ def page_not_found(error):
 
 @app.route('/', methods=['GET', 'POST'])
 def generate():
-    getter = Getter()
-    if request.method == 'POST':
+    if request.method == 'GET':
+        return render_template('generate.html')
+    elif request.method == 'POST':
+        getter = Getter()
         if 'btn1' in request.form:
             login = request.form['login']
             passwd = request.form['passwd']
@@ -32,7 +34,6 @@ def generate():
             else:
                 return render_template('generate.html', otvet='Ошибка при парсинге')
 
-    return render_template('generate.html')
 
 
 @app.route('/viewer')
