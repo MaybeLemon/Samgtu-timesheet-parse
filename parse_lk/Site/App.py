@@ -13,7 +13,7 @@ def page_not_found(error):
 @app.route('/', methods=['GET', 'POST'])
 def generate():
     if request.method == 'GET':
-        return render_template('generate.html')
+        return render_template('generate_json.html')
     elif request.method == 'POST':
         getter = Getter()
         if 'btn1' in request.form:
@@ -22,17 +22,17 @@ def generate():
             getter.authorize(login, passwd)
             new_data = getter.parse()
             if new_data != 0:
-                return render_template('generate.html', otvet='Парсинг прошёл успешно')
+                return render_template('generate_json.html', otvet='Парсинг прошёл успешно')
             else:
-                return render_template('generate.html', otvet='Ошибка при парсинге')
+                return render_template('generate_json.html', otvet='Ошибка при парсинге')
         elif 'btn2' in request.form:
             sessid = request.form['sessid']
             getter.cookie(sessid)
             new_data = getter.parse()
             if new_data != 0:
-                return render_template('generate.html', otvet='Парсинг прошёл успешно')
+                return render_template('generate_json.html', otvet='Парсинг прошёл успешно')
             else:
-                return render_template('generate.html', otvet='Ошибка при парсинге')
+                return render_template('generate_json.html', otvet='Ошибка при парсинге')
 
 
 
@@ -40,7 +40,7 @@ def generate():
 def view():
     json_files = [f for f in os.listdir(JSON_FOLDER) if f.endswith('.json')]
     numbers = [f.split('_')[1].split('.')[0] for f in json_files]
-    return render_template('index.html', numbers=numbers)
+    return render_template('json_select.html', numbers=numbers)
 
 @app.route('/<int:number>', methods=['GET', 'POST'])
 def json_page(number):
@@ -65,40 +65,40 @@ def json_page(number):
         data['unique_teacher'].remove('')
         data['lessons'] = lessons
         if request.method == 'GET':
-            return render_template('rasp.html', data=data)
+            return render_template('timesheet.html', data=data)
         elif request.method == 'POST':
             if 'sort' in request.form:
                 date = request.form['date']
                 sub_type = request.form['sub_type']
                 if date == "":
                     if sub_type == 'nontype':
-                        return render_template('rasp.html', data=data)
+                        return render_template('timesheet.html', data=data)
                     else:
                         data['lessons'] = []
                         for lesson in lessons:
                             if lesson['Тип предмета'] == sub_type:
                                 data['lessons'].append(lesson)
-                        return render_template('rasp.html', data=data)
+                        return render_template('timesheet.html', data=data)
                 elif sub_type == 'nontype':
                     data['lessons'] = []
                     for lesson in lessons:
                         if date.split('-') == [lesson['Год'], lesson['Месяц'], lesson['День']]:
                             data['lessons'].append(lesson)
                     data['lessons'] = sorted(data['lessons'], key=lambda x: int(x['Начало'][:2]))
-                    return render_template('rasp.html', data=data)
+                    return render_template('timesheet.html', data=data)
                 else:
                     data['lessons'] = []
                     for lesson in lessons:
                         if lesson['Тип предмета'] == sub_type and date.split('-') == [lesson['Год'], lesson['Месяц'], lesson['День']]:
                             data['lessons'].append(lesson)
-                    return render_template('rasp.html', data=data)
+                    return render_template('timesheet.html', data=data)
             elif 'sub_info' in request.form:
                 sub = request.form['sub_type']
                 data['lessons'] = []
                 for lesson in lessons:
                     if lesson['Название'] == sub:
                         data['lessons'].append(lesson)
-                return render_template('rasp.html', data=data)
+                return render_template('timesheet.html', data=data)
 
             elif 'teacher_sub' in request.form:
                 data['lessons'] = []
@@ -106,11 +106,11 @@ def json_page(number):
                 for lesson in lessons:
                     if teacher in lesson['Преподаватель']:
                         data['lessons'].append(lesson)
-                return render_template('rasp.html', data=data)
+                return render_template('timesheet.html', data=data)
 
 
             else:
-                return render_template('rasp.html', data=data)
+                return render_template('timesheet.html', data=data)
     else:
         return render_template('404.html')
 
