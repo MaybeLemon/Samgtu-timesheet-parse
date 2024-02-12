@@ -1,11 +1,11 @@
 header {
     margin-top: 0;
-    margin-bottom: 6vh;
+    margin-bottom: 25px;
 }
 
 table {
-    margin: 30px;
     margin-top: 0;
+    width: 95%;
     border-collapse: collapse;
 }
 td, th {
@@ -15,4 +15,65 @@ td, th {
 }
 th {
     background: #11515e;
+}
+
+.for_table {
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: end;
+    margin-bottom: 30px;
+}
+
+.element {
+    display: flex;
+    background-color: #14053f;
+    width: 600px;
+    padding: 10px;
+    margin: 10px;
+    margin-bottom: 0;
+    border-radius: 13px;
+    align-items: center;
+    justify-content: end;
+    text-align: center;
+}
+
+.button {
+    margin-top: 0;
+    background-color: #faf2f2;
+    color: #111111;
+    padding: 4px 9px 4px 9px;
+}
+
+.button:hover {
+    background-color: #b6afaf;
+}
+
+.incenter {
+    text-align: center;
+}
+
+label {
+    color: var(--text-btn-color);
+    font-family: Roboto;
+    font-size: 18px;
+    text-align: center;
+}
+
+.user_inputs {
+    margin-right: 10px;
+}
+
+.exc {
+    margin-top: 10px;
+}
+
+select {
+    max-width: 150px;
 }

@@ -12,23 +12,67 @@
          <a href="/"><p class="header">Generate</p></a>
          <a href="/viewer"><p class="header">Viewer</p></a>
     </header>
-    <table id="lessonTable">
-        <tr>
-            <th onclick="sortTable(0)">Название</th>
-            <th onclick="sortTable(1)">Дата</th>
-            <th onclick="sortTable(2)">Время</th>
-            <th onclick="sortTable(3)">Преподаватель</th>
-            <th onclick="sortTable(4)">Тип предмета</th>
-        </tr>
-        {% for lesson in lessons %}
-        <tr>
-            <td>{{ lesson['Название'] }}</td>
-            <td>{{ lesson['День'] }}/{{ lesson['Месяц'] }}/{{ lesson['Год'] }}</td>
-            <td>{{ lesson['Начало'] }} - {{ lesson['Конец'] }}</td>
-            <td>{{ lesson['Преподаватель'] }}</td>
-            <td>{{ lesson['Тип предмета'] }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+
+    <div class="container">
+        <div class="element">
+            <form method="POST">
+                <label for="date">Дата:</label>
+                <input type="date" name="date" id="date" class="user_inputs">
+                <label for="sub_type">Тип предмета:</label>
+                <select id="sub_type" name="sub_type" class="user_inputs">
+                    <option value="nontype">Не указано</option>
+                    <option value="Практические занятия">Практические занятия</option>
+                    <option value="Лабораторные работы">Лабораторные работы</option>
+                    <option value="Лекции">Лекции</option>
+                </select>
+                <button type="submit" class="button" name="sort" id="sort">Подтвердить</button>
+            </form>
+        </div>
+        <div class="element">
+            <form method="POST">
+                <label for="sub_type">Название предмета:</label>
+                <select id="sub_type" name="sub_type" class="user_inputs">
+                    {% for x in data['unique_names'] %}
+                        <option value="{{ x }}">{{ x }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit" class="button" name ='sub_info' id="sub_info">Подтвердить</button>
+            </form>
+        </div>
+        <div class="element">
+            <form method="POST">
+                <label for="teacher_info">Выберите преподавателя:</label>
+                <select id="teacher_info" name="teacher_info" class="user_inputs">
+                    {% for x in data['unique_teacher'] %}
+                        <option value="{{ x }}">{{ x }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit" class="button" name ='teacher_sub' id="teacher_sub">Подтвердить</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="for_table">
+
+        <table id="lessonTable">
+            <tr>
+                <th>Название</th>
+                <th>Дата</th>
+                <th>Время</th>
+                <th>Преподаватель</th>
+                <th>Тип предмета</th>
+            </tr>
+            {% for lesson in data['lessons'] %}
+                <tr>
+                    <td>{{ lesson['Название'] }}</td>
+                    <td class="incenter">{{ lesson['День'] }}/{{ lesson['Месяц'] }}/{{ lesson['Год'] }}</td>
+                    <td class="incenter">{{ lesson['Начало'] }} - {{ lesson['Конец'] }}</td>
+                    <td>{{ lesson['Преподаватель'] }}</td>
+                    <td>{{ lesson['Тип предмета'] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
 </body>
 </html>

@@ -63,8 +63,8 @@ class Getter():
             year = date.split('-')[0]
             month = date.split('-')[1]
             day = date.split('-')[2]
-            time_start = urok['start'].split('T')[1]
-            time_end = urok['end'].split('T')[1]
+            time_start = urok['start'].split('T')[1][:-3]
+            time_end = urok['end'].split('T')[1][:-3]
             try:
                 teacher = urok['description'].split('br')[1][1:-1]
             except IndexError:
