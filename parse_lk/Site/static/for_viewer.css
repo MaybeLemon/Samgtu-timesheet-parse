@@ -1,8 +1,3 @@
-header {
-    margin-top: 0;
-    margin-bottom: 25px;
-}
-
 table {
     margin-top: 0;
     width: 95%;
@@ -12,6 +7,11 @@ td, th {
     padding: 3px;
     border: 1px solid #0080b4;
     color: var(--text-color);
+    font-family: Tahoma;
+    font-size: 14px;
+    font-weight: bold;
+    vertical-align: top;
+    background-color: rgba(0,0,0,0.3);
 }
 th {
     background: #11515e;
@@ -33,26 +33,16 @@ th {
 
 .element {
     display: flex;
-    background-color: #14053f;
-    width: 590px;
+    background-color: rgba(0,0,0,0.3);
+    width: 610px;
     padding: 10px;
     margin: 10px;
     margin-bottom: 0;
-    border-radius: 13px;
+    border-radius: 15px;
     align-items: center;
     justify-content: end;
     text-align: center;
-}
-
-.button {
-    margin-top: 0;
-    background-color: #faf2f2;
-    color: #111111;
-    padding: 4px 9px 4px 9px;
-}
-
-.button:hover {
-    background-color: #b6afaf;
+    box-shadow: 0 3px 6px 0 rgba(0,0,0,0.2);
 }
 
 .incenter {
@@ -61,15 +51,18 @@ th {
 
 label {
     color: var(--text-btn-color);
-    font-family: Roboto;
-    font-size: 18px;
+    font-family: Arial;
+    font-size: 16px;
     text-align: center;
 }
 
 .user_inputs {
     margin-right: 10px;
-    font-family: Roboto;
+    font-family: Arial;
     font-size: 16px;
+    border-radius: 15px;
+    padding: 0 6px 0 6px;
+    background-color: rgba(255,255,255,0.8);
 }
 
 .exc {
@@ -78,4 +71,11 @@ label {
 
 select {
     max-width: 150px;
+}
+
+#name_sub {
+    max-width: 600px;
+}
+#time {
+    min-width: 200px;
 }

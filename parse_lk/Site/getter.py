@@ -6,9 +6,7 @@ from openpyxl import load_workbook
 import json
 
 
-
-
-class Getter():
+class Getter:
     def __init__(self):
         self.url_json = 'https://lk.samgtu.ru/api/common/distancelearning'
         self.url_login = 'https://lk.samgtu.ru/site/login'
@@ -20,7 +18,6 @@ class Getter():
         self.headers = {
             'Referer': 'https://lk.samgtu.ru/distancelearning/distancelearning/index',
         }
-
 
     def fix_headers(self, filename, sheetname):
         wb = load_workbook(filename)
@@ -87,7 +84,7 @@ class Getter():
         if not os.path.isdir('../xlsx'): os.mkdir('../xlsx')
 
         # json
-        with open(f"../json/data_{info}.json", "w", encoding='utf-8') as json_file:
+        with open(f"../json/data_{info}_.json", "w", encoding='utf-8') as json_file:
             json.dump(new_data, json_file)
 
         file_xlsx = f'../xlsx/расписание_{info}.xlsx'
@@ -98,4 +95,3 @@ class Getter():
         self.fix_headers(file_xlsx, sheetname)
 
         return new_data
-

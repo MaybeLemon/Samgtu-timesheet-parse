@@ -6,19 +6,20 @@
     <title>Selector</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='buttons.css')}}">
 </head>
 <body>
     <header>
-        <a href="/"><p class="header">Generate</p></a>
-        <a href="/viewer"><p class="header">Viewer</p></a>
+        <a href="/" class="buttons_header"><p class="header">Generate</p></a>
+        <a href="/viewer" class="buttons_header"><p class="header">Viewer</p></a>
     </header>
     <div class="container">
         <p>Список доступных JSON файлов</p>
         <ul>
-            {% for number in numbers %}
+            {% for number in data['numbers'] %}
                 <li class="element">
                     <a href="{{ url_for('json_page', number=number) }}">
-                        <button class="button">
+                        <button class="buttons_main" type="button">
                             Открыть JSON {{ number }}
                         </button>
                     </a>

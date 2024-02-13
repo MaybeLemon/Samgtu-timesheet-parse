@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Generate</title>
     <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='buttons.css')}}">
     <style>
         body {
             height: 100vh;
@@ -12,8 +13,8 @@
 </head>
 <body>
     <header>
-        <a href="/"><p class="header">Generate</p></a>
-        <a href="/viewer"><p class="header">Viewer</p></a>
+        <a href="/" class="buttons_header"><p class="header">Generate</p></a>
+        <a href="/viewer" class="buttons_header"><p class="header">Viewer</p></a>
     </header>
     <div id="main_div">
         <form action="/" method="post">
@@ -29,7 +30,7 @@
                         <input id='passwd' name="passwd" type="password" class="input-field" placeholder="Пароль">
                     </div>
                     <div class="element">
-                        <button type="submit" id='btn1' name="btn1" class="button">Авторизоваться</button>
+                        <button type="submit" id='btn1' name="btn1" class="buttons_main">Авторизоваться</button>
                     </div>
                 </div>
             </div>
@@ -44,7 +45,7 @@
                         <input id="sessid" name="sessid" class="input-field" placeholder="PHPSESSID">
                     </div>
                     <div class="element">
-                        <button type="submit" name="btn2" id="btn2" class="button">Авторизоваться</button>
+                        <button type="submit" name="btn2" id="btn2" class="buttons_main">Авторизоваться</button>
                     </div>
                 </div>
             </div>
