@@ -32,6 +32,9 @@
                     <div class="element">
                         <button type="submit" id='btn1' name="btn1" class="buttons_main">Авторизоваться</button>
                     </div>
+                    <div class="element">
+                        <p class="otvet">{{ data['otvet_auth'] }}</p>
+                    </div>
                 </div>
             </div>
         </form>
@@ -45,12 +48,19 @@
                         <input id="sessid" name="sessid" class="input-field" placeholder="PHPSESSID">
                     </div>
                     <div class="element">
+                        <div id='kostyl' class="input-field"></div>
+                    </div>
+                    <div class="element">
                         <button type="submit" name="btn2" id="btn2" class="buttons_main">Авторизоваться</button>
+                    </div>
+
+                    <div class="element">
+                        <p class="otvet">{{ data['otvet_sessid'] }}</p>
                     </div>
                 </div>
             </div>
         </form>
     </div>
-    <p>{{ otvet }}</p>
+
 </body>
 </html>

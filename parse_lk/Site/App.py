@@ -20,7 +20,7 @@ def handle_error(error):
 def generate():
     data = give_data()
     if request.method == 'GET':
-        return render_template('generate_json.html')
+        return render_template('generate_json.html', data=data)
     elif request.method == 'POST':
         getter = Getter()
         if 'btn1' in request.form:
@@ -29,20 +29,20 @@ def generate():
             getter.authorize(login, passwd)
             new_data = getter.parse()
             if new_data != 0:
-                data['otvet'] = 'Парсинг прошёл успешно'
+                data['otvet_auth'] = 'Парсинг прошёл успешно'
                 return render_template('generate_json.html', data=data)
             else:
-                data['otvet'] = 'Произошла ошибка, проверьте данные'
+                data['otvet_auth'] = 'Произошла ошибка'
                 return render_template('generate_json.html', data=data)
         elif 'btn2' in request.form:
             sessid = request.form['sessid']
             getter.cookie(sessid)
             new_data = getter.parse()
             if new_data != 0:
-                data['otvet'] = 'Парсинг прошёл успешно'
+                data['otvet_sessid'] = 'Парсинг прошёл успешно'
                 return render_template('generate_json.html', data=data)
             else:
-                data['otvet'] = 'Произошла ошибка, проверьте данные'
+                data['otvet_sessid'] = 'Произошла ошибка'
                 return render_template('generate_json.html', data=data)
 
 
@@ -77,11 +77,13 @@ def json_page(number):
             elif 'sub_info' in request.form:
                 sub = request.form['sub_name']
                 data = sub_info_btn(data, sub, lessons)
+                data['sub_info'] = f'Расписание предмета {sub}'
                 return render_template('timesheet.html', data=data)
 
             elif 'teacher_sub' in request.form:
                 teacher = request.form['teacher_info']
                 data = teacher_sub_btn(data, teacher, lessons)
+                data['teacher_info'] = f'Расписание преподавателя {teacher}'
                 return render_template('timesheet.html', data=data)
 
             else:

@@ -17,9 +17,9 @@
     <div class="container">
         <div class="element">
             <form method="POST">
-                <label for="date">Дата:</label>
+                <label>Дата:</label>
                 <input type="date" name="date" id="date" class="user_inputs">
-                <label for="sub_type">Тип предмета:</label>
+                <label>Тип предмета:</label>
                 <select id="sub_type" name="sub_type" class="user_inputs">
                     <option value="nontype">Не указано</option>
                     <option value="Практические занятия">Практические занятия</option>
@@ -31,7 +31,7 @@
         </div>
         <div class="element">
             <form method="POST">
-                <label for="sub_name">Название предмета:</label>
+                <label>Название предмета:</label>
                 <select id="sub_name" name="sub_name" class="user_inputs">
                     {% for x in data['unique_names'] %}
                         <option value="{{ x }}">{{ x }}</option>
@@ -42,7 +42,7 @@
         </div>
         <div class="element">
             <form method="POST">
-                <label for="teacher_info">Выберите преподавателя:</label>
+                <label>Выберите преподавателя:</label>
                 <select id="teacher_info" name="teacher_info" class="user_inputs">
                     {% for x in data['unique_teacher'] %}
                         <option value="{{ x }}">{{ x }}</option>
@@ -52,11 +52,13 @@
             </form>
         </div>
     </div>
+{#    <div class="some_label">#}
+{#        <p>{{data['teacher_info']}}{{data['sub_info']}}</p>#}
+{#    </div>#}
 
     <div class="for_table">
-
         <table id="lessonTable">
-            <tr>
+            <tr id="main_tr">
                 <th>Название</th>
                 <th>Дата</th>
                 <th>Время</th>
@@ -67,8 +69,8 @@
                 <tr>
                     <td id="name_sub">{{ lesson['Название'] }}</td>
                     <td class="incenter">{{ lesson['День'] }}/{{ lesson['Месяц'] }}/{{ lesson['Год'] }}</td>
-                    <td class="incenter">{{ lesson['Начало'] }} - {{ lesson['Конец'] }}</td>
-                    <td id="time">{{ lesson['Преподаватель'] }}</td>
+                    <td id="time" class="incenter">{{ lesson['Начало'] }} - {{ lesson['Конец'] }}</td>
+                    <td>{{ lesson['Преподаватель'] }}</td>
                     <td>{{ lesson['Тип предмета'] }}</td>
                 </tr>
             {% endfor %}
