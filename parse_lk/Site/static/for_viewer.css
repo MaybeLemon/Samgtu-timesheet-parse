@@ -1,9 +1,11 @@
 table {
     margin-top: 0;
+    margin-bottom: 30px;
     width: 95%;
     border-collapse: collapse;
     border-spacing: 0;
 }
+
 td, th {
     padding: 5px;
     /*border: 1px solid rgba(255, 255, 255, 0.3);*/
@@ -14,6 +16,7 @@ td, th {
     vertical-align: top;
     background-color: rgba(0,0,0,0.3);
 }
+
 #main_tr {
     /*background: rgba(255, 0, 183, 0.4);*/
     background: linear-gradient(149deg, rgba(24,187,156,1) 0%, rgba(106,57,175,1) 42%, rgba(187,24,148,1) 72%, rgb(32, 98, 161) 100%);

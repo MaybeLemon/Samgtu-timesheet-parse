@@ -13,6 +13,7 @@ html, body {
 body {
     /*background-color: var(--back-color);*/
     justify-content: center;
+    min-height: 100vh;
     background: linear-gradient(149deg, rgb(84, 0, 35) 0%, rgb(43, 0, 103) 42%, rgb(103, 0, 79) 72%, rgba(115,53,134,1) 100%);;
     background-attachment: fixed;
     animation: gradient 7s infinite linear;
