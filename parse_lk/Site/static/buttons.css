@@ -34,15 +34,14 @@
     border-radius: 15px;
     cursor: pointer;
     transition: .2s linear;
-    box-shadow: 0 3px 6px 0 rgba(0,0,0,0.5);
+    box-shadow: 0 3px 6px 0 rgba(0,0,0,0.3);
 
 }
 
 .buttons_main:hover {
     /*background-color: #177769;*/
-    background-color: rgba(0,0, 0, 0.1);
-
-    /*box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1);*/
+    background-color: rgba(25, 195, 255, 0.2);
+    box-shadow: 0 0 20px rgba(4, 255, 226, 0.8);
 }
 
 /*#btn2 {*/
@@ -57,9 +56,4 @@
     font-family: Georgia;
     font-size: 18px;
 
-}
-
-.buttons_request:hover {
-    /*background-color: #b6afaf;*/
-    box-shadow: 0 0 0 3px rgba(255, 0, 214, 0.51);
 }

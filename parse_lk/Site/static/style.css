@@ -85,10 +85,10 @@ a p {
     box-sizing: border-box;
     color: var(--text-btn-color);
     margin-right: 10px;
-    font-size: 16px;
+    font-size: 18px;
     border: none;
     border-radius: 15px;
-    padding: 2px 7px 0 7px;
+    padding: 0 10px 0 10px;
     background-color: rgba(0, 0, 0, 0.3);
     box-shadow: 0 0 10px rgba(0,0,0,1);
     transition: 0.4s;

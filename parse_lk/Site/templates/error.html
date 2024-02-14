@@ -14,8 +14,9 @@
 </head>
 <body>
     <header>
-        <a href="/" class="buttons_header"><p class="header">Generate</p></a>
-        <a href="/viewer" class="buttons_header"><p class="header">Viewer</p></a>
+        {% for item in data['nav'] %}
+             <a href="{{ item.url }}" class="buttons_header"><p class="header">{{ item.name }}</p></a>
+        {% endfor %}
     </header>
     <p><br>Произошла ошибка</p>
 </body>
