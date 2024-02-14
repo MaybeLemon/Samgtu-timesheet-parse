@@ -84,7 +84,7 @@ class Getter:
         if not os.path.isdir('../xlsx'): os.mkdir('../xlsx')
 
         # json
-        with open(f"../json/data_{info}_.json", "w", encoding='utf-8') as json_file:
+        with open(f"../json/data_{info}.json", "w", encoding='utf-8') as json_file:
             json.dump(new_data, json_file)
 
         file_xlsx = f'../xlsx/расписание_{info}.xlsx'
