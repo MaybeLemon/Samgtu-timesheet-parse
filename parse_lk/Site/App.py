@@ -9,8 +9,8 @@ from navigation import *
 
 class WebSite:
     def __init__(self, __name__):
-        self.json_folder: str
-        self.htmls: dict
+        self.json_folder = None
+        self.htmls = None
         self.app = Flask(__name__)
         self.setup_routes()
         self.data = give_data()
