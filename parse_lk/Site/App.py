@@ -19,10 +19,11 @@ class WebSite:
     def setup_routes(self):
         @self.app.errorhandler(404)
         def handle_error(error):
-            return render_template(self.htmls['error'])
+            return render_template(self.htmls['error'], data=self.data)
 
         @self.app.route('/', methods=['GET', 'POST'])
         def generate():
+            if self.data['otvet']: self.data['otvet'] = ''
             if request.method == 'GET':
                 return render_template(self.htmls['generate'], data=self.data)
             elif request.method == 'POST':
@@ -89,7 +90,7 @@ class WebSite:
                     else:
                         return render_template(self.htmls['timesheet'], data=self.data)
             else:
-                return render_template(self.htmls['error'])
+                return render_template(self.htmls['error'], data=self.data)
 
     def run(self, host, port, debug):
         self.app.run(host, port=port, debug=debug)
