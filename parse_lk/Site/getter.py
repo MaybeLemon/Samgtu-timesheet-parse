@@ -4,6 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 from openpyxl import load_workbook
 import json
+import sqlite3
 
 
 class Getter:
@@ -27,6 +28,29 @@ class Getter:
             col[0].style = 'Pandas'
 
         wb.save(filename)
+
+    # def safe_to_database(self, filename, new_data):
+    #     connection = sqlite3.connect(filename)
+    #     cursor = connection.cursor()
+    #     cursor.execute('''CREATE TABLE IF NOT EXISTS schedule (
+    #                         id INTEGER PRIMARY KEY,
+    #                         name TEXT,
+    #                         day INTEGER,
+    #                         month INTEGER,
+    #                         year INTEGER,
+    #                         start_time TEXT,
+    #                         end_time TEXT,
+    #                         teacher TEXT,
+    #                         subject_type TEXT
+    #                     )''')
+    #     for urok in new_data:
+    #         cursor.execute('''INSERT INTO schedule (name, day, month, year, start_time, end_time, teacher, subject_type)
+    #                           VALUES (?, ?, ?, ?, ?, ?, ?, ?)''',
+    #                        (urok['Название'], urok['День'], urok['Месяц'], urok['Год'], urok['Начало'], urok['Конец'],
+    #                         urok['Преподаватель'], urok['Тип предмета']))
+    #     connection.commit()
+    #     connection.close()
+    #     connection.close()
 
     def cookie(self, sessid):
         self.headers['Cookie'] = "PHPSESSID=" + sessid
@@ -53,6 +77,7 @@ class Getter:
 
         old_data = r.json()
         new_data = []
+
 
         for urok in old_data:
             name = urok['title']
@@ -82,6 +107,7 @@ class Getter:
 
         if not os.path.isdir('../json'): os.mkdir('../json')
         if not os.path.isdir('../xlsx'): os.mkdir('../xlsx')
+        if not os.path.exists('../sqlite3.db'): os.system('touch ../sqlite3.db')
 
         # json
         with open(f"../json/data_{info}.json", "w", encoding='utf-8') as json_file:
@@ -93,5 +119,7 @@ class Getter:
 
         sheetname = 'Sheet1'
         self.fix_headers(file_xlsx, sheetname)
+
+        # self.safe_to_database('shedule.db', new_data)
 
         return new_data
