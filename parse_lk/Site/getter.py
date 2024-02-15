@@ -119,6 +119,6 @@ class Getter:
         sheetname = 'Sheet1'
         self.fix_headers(file_xlsx, sheetname)
 
-        self.safe_to_database('shedule.db')
+        self.safe_to_database('../shedule.db')
 
         return self.new_data
