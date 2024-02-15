@@ -7,4 +7,3 @@ if __name__ == '__main__':
     site.json_folder = json_folder
     site.htmls = htmls
     site.run(host=host, port=port, debug=debug)
-
