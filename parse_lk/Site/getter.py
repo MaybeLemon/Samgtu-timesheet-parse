@@ -29,28 +29,28 @@ class Getter:
 
         wb.save(filename)
 
-    # def safe_to_database(self, filename, new_data):
-    #     connection = sqlite3.connect(filename)
-    #     cursor = connection.cursor()
-    #     cursor.execute('''CREATE TABLE IF NOT EXISTS schedule (
-    #                         id INTEGER PRIMARY KEY,
-    #                         name TEXT,
-    #                         day INTEGER,
-    #                         month INTEGER,
-    #                         year INTEGER,
-    #                         start_time TEXT,
-    #                         end_time TEXT,
-    #                         teacher TEXT,
-    #                         subject_type TEXT
-    #                     )''')
-    #     for urok in new_data:
-    #         cursor.execute('''INSERT INTO schedule (name, day, month, year, start_time, end_time, teacher, subject_type)
-    #                           VALUES (?, ?, ?, ?, ?, ?, ?, ?)''',
-    #                        (urok['Название'], urok['День'], urok['Месяц'], urok['Год'], urok['Начало'], urok['Конец'],
-    #                         urok['Преподаватель'], urok['Тип предмета']))
-    #     connection.commit()
-    #     connection.close()
-    #     connection.close()
+    def safe_to_database(self, filename):
+        connection = sqlite3.connect(filename)
+        cursor = connection.cursor()
+        cursor.execute(f'''DROP TABLE IF EXISTS {'table_' + str(self.info)}''')
+        cursor.execute(f'''CREATE TABLE {'table_' + str(self.info)} (
+                            id INTEGER PRIMARY KEY,
+                            name TEXT NOT NULL,
+                            day INTEGER NOT NULL,
+                            month INTEGER NOT NULL,
+                            year INTEGER NOT NULL,
+                            start_time TEXT NOT NULL,
+                            end_time TEXT NOT NULL,
+                            teacher TEXT NOT NULL,
+                            subject_type TEXT NOT NULL
+                        )''')
+        for urok in self.new_data:
+            cursor.execute(f'''INSERT INTO {'table_' + str(self.info)} (name, day, month, year, start_time, end_time, teacher, subject_type)
+                              VALUES (?, ?, ?, ?, ?, ?, ?, ?)''',
+                           (urok['Название'], urok['День'], urok['Месяц'], urok['Год'], urok['Начало'], urok['Конец'],
+                            urok['Преподаватель'], urok['Тип предмета']))
+        connection.commit()
+        connection.close()
 
     def cookie(self, sessid):
         self.headers['Cookie'] = "PHPSESSID=" + sessid
@@ -73,10 +73,10 @@ class Getter:
 
         req_for_name = requests.get(self.url_for_num, params=self.params, headers=self.headers)
         soup = BeautifulSoup(req_for_name.text, 'html.parser')
-        info = soup.find('div', class_='current-user__info').text.split(' ')[-1]
+        self.info = soup.find('div', class_='current-user__info').text.split(' ')[-1]
 
         old_data = r.json()
-        new_data = []
+        self.new_data = []
 
 
         for urok in old_data:
@@ -96,7 +96,7 @@ class Getter:
             except IndexError:
                 urok_type = ""
 
-            new_data.append({'Название': name,
+            self.new_data.append({'Название': name,
                              'День': day,
                              'Месяц': month,
                              'Год': year,
@@ -107,19 +107,18 @@ class Getter:
 
         if not os.path.isdir('../json'): os.mkdir('../json')
         if not os.path.isdir('../xlsx'): os.mkdir('../xlsx')
-        if not os.path.exists('../sqlite3.db'): os.system('touch ../sqlite3.db')
 
         # json
-        with open(f"../json/data_{info}.json", "w", encoding='utf-8') as json_file:
-            json.dump(new_data, json_file)
+        with open(f"../json/data_{self.info}.json", "w", encoding='utf-8') as json_file:
+            json.dump(self.new_data, json_file)
 
-        file_xlsx = f'../xlsx/расписание_{info}.xlsx'
-        df = pd.DataFrame(new_data)
+        file_xlsx = f'../xlsx/расписание_{self.info}.xlsx'
+        df = pd.DataFrame(self.new_data)
         df.to_excel(file_xlsx, index=False)
 
         sheetname = 'Sheet1'
         self.fix_headers(file_xlsx, sheetname)
 
-        # self.safe_to_database('shedule.db', new_data)
+        self.safe_to_database('shedule.db')
 
-        return new_data
+        return self.new_data

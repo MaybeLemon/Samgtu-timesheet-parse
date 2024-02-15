@@ -67,8 +67,8 @@ def parse(params, headers):
                          'Преподаватель': teacher,
                          'Тип предмета': urok_type})
 
-    if not os.path.isdir('json'): os.mkdir('json')
-    if not os.path.isdir('xlsx'): os.mkdir('xlsx')
+    if not os.path.isdir('../json'): os.mkdir('../json')
+    if not os.path.isdir('../xlsx'): os.mkdir('../xlsx')
 
     # json
     with open(f"json/data_{info}.json", "w", encoding='utf-8') as json_file:
